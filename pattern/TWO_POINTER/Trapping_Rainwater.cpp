@@ -8,25 +8,48 @@ public:
         int n = height.size();
         int left = 0 ; 
         int right = n -1;
-        int leftMax = height[left];
-        int rightMax = height[right];
+        int leftMax = 0;
+        int rightMax = 0 ;
         int water = 0;
 
-        while( left < right){
+        // while( left < right){
 
-            if(leftMax < rightMax){
-                left++;
-                leftMax = max(leftMax ,height[left]);
-                water += leftMax - height[left];
+        //     if(leftMax < rightMax){
+        //         left++;
+        //         leftMax = max(leftMax ,height[left]);
+        //         water += leftMax - height[left];
+        //     }
+
+        //     else{
+        //         right--;
+        //         rightMax = max(rightMax ,height[right]);
+        //         water += rightMax - height[right];
+        //     }
+        // }
+        
+        // return water;
+
+
+        while(left < right){
+            if(height[left] <= height[right]){
+               if(leftMax > height[left]){
+                 water += leftMax -height[left];
+               } else{
+                 leftMax = max(leftMax , height[left]);
+               }
+               left++;
             }
-
+            
             else{
-                right--;
-                rightMax = max(rightMax ,height[right]);
+               if(rightMax > height[right]){
                 water += rightMax - height[right];
+               }
+               else {
+                rightMax = max(rightMax , height[right]);
+               }
+               right--;
             }
         }
-        
         return water;
     }
 };
